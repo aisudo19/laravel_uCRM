@@ -3,6 +3,7 @@
 use App\Http\Controllers\InertiaTestController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\CustomerController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -10,6 +11,13 @@ use Inertia\Inertia;
 // Route::resourceだとCRUDのデフォルト全て含む
 
 Route::resource('/items', ItemController::class)
+->middleware(['auth', 'verified']);
+
+// Route::get('/items/{item}', [ItemController::class,'show'])->name('items.show');
+
+Route::get( '/inertia/show/{id}', [InertiaTestController::class, 'show'])->name('inertia.show');
+
+Route::resource('/customers', CustomerController::class)
 ->middleware(['auth', 'verified']);
 
 Route::get('/inertia-test', function () {

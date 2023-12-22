@@ -7,7 +7,6 @@ defineProps({
 })
 
 const deleteConfirm = id => {
-    // console.log(id)
     router.delete(`/inertia/${id}`, {
         onBefore: () => confirm('本当に削除しますか？')
     })
